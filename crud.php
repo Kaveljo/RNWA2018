@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require 'db.php';
 
 $result = mysqli_query($mysqli, "SELECT igraci.id, Ime,Prezime, Game_tag, tim FROM igraci JOIN timovi ON igraci.FK_Team = timovi.id ORDER by tim, ime ASC");
@@ -12,7 +13,7 @@ $result = mysqli_query($mysqli, "SELECT igraci.id, Ime,Prezime, Game_tag, tim FR
 </head>
 
 <body>
-<a href="create.html">Add New Data</a><br/><br/>
+<a href="create.html">Dodaj novog igraca</a><br/><br/>
 
 	<table width='80%' border=0>
 
