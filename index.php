@@ -12,274 +12,176 @@ require 'db.php';
 		<meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 	</head>
 	<body>
-        <div class="menu">
-            <div class="frame">   
-                <table class="menu-list">
-                    <thead class="menu-list-head">
-                        <tr>
-                            <td style="aling:center">ESPORTS</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="game-name">
-                                <button id="home" class="nav-btn" onclick="esport(this.id)">Home</button>
-                            </td>
-                        </tr>
-						<?php	$sql = "SELECT * FROM esport ";
-							$result = mysqli_query($mysqli,$sql)or die(mysqli_error());
-								while($row = mysqli_fetch_array($result)):?>
-							 <tr>
-                                <td class="game-name">
-                                    <button id="<?php echo $row['Ime_Esporta']; ?>" class="nav-btn" onclick="esport(this.id)"><?php echo $row['Ime_Esporta']; ?></button>
-                                </td>
-							</tr>
-						<?php 
-						endwhile;
-						?>
-                    </tbody>
-                </table> 
-			</div>
+        <div class="search-space">    
+			<a href="search.php" class="button">Search info about teams and players</a>
+			<form method="post" action="" > 
+				<input type="text" class="searchfield" name="srcField" placeholder="Input team name to find out results"></input>
+				<input type="submit" class="srcBtn" name="trazi" value="Search"></input>
+			</form>
         </div>
-        <div class ="results">
-                <div class="phone-btn" onclick="openNav()">
-                    <span style="font-size:30px;cursor:pointer"  class>&#9776; ESPORTS</span>
-                </div>
-                <div id="myNav" class="overlay">
-                        <span class="closebtn" onclick="closeNav()">&times;</span>
-                            <div class="overlay-content">
-                                <span phoneId="home" onclick="phone_menu(this.getAttribute('phoneId'))">Home</span>
-                                <?php	$sql = "SELECT * FROM esport ";
-									$result = mysqli_query($mysqli,$sql)or die(mysqli_error());
-										while($row = mysqli_fetch_array($result)):?>
-											<span phoneId="<?php echo $row['Ime_Esporta']; ?>" onclick="phone_menu(this.getAttribute('phoneId'))"><?php echo $row['Ime_Esporta']; ?></span>
-								<?php 
+		<div class="src-result">
+			<?php
+				if(isset($_POST['srcField'])){
+					$pojam=$_POST['srcField'];
+				}
+				
+				if(isset($_POST["trazi"])){
+					$sql = mysqli_query($mysqli,"SELECT * FROM timovi WHERE tim='$pojam'");
+					if(mysqli_num_rows($sql)>0){?>
+						<table class="results-table">
+							<thead><tr class="tournament-header" ><td colspan="3">Match information</td></tr></thead>
+							<tbody>
+								<tr>
+									<td class="tournament-game" style="font-weight:bold">Team A</td>
+									<td class="tournament-game game-result" style="font-weight:bold">Result</td>
+									<td class="tournament-game" style="font-weight:bold">Team B</td>
+								</tr>
+					<?php
+						//search for team
+						$qry = "SELECT * FROM timovi WHERE tim='$pojam'";
+						$result = mysqli_query($mysqli,$qry)or die(mysqli_error());
+							while($row = mysqli_fetch_array($result)):
+								$keyParticipant=$row['id'];
+							endwhile;
+						
+						//search for duel
+						$sql = mysqli_query($mysqli,"SELECT * FROM duel WHERE FK_Team1='$keyParticipant' or FK_Team2='$keyParticipant'");
+						if(mysqli_num_rows($sql)>0){
+							$qry = "SELECT * FROM duel WHERE FK_Team1='$keyParticipant' or FK_Team2='$keyParticipant'";
+							$result = mysqli_query($mysqli,$qry)or die(mysqli_error());
+								while($row = mysqli_fetch_array($result)):
+									$team1=$row['FK_Team1'];
+									$team2=$row['FK_Team2'];
+									$keyMatch=$row['id'];
 								endwhile;
-						?>
-                            </div>
-                    </div>
-				<a href="search.php" class="button">Search</a>
-                <table class="results-table League Of Legends">
-                        <thead>
-                            <tr class="tournament-header">
-                                <td class="tournament-logo"><img src="css/images/lol.png" class="esports-logo"></td>
-                                <td class="tournament-name" colspan="4">NA LCS 2018 Arizona</td>
-                                <td class="game-date">06-04-2018</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="tournament-game">
-                                <td class="game-start-time">13:00</td>
-                                <td class="game-status">Finished</td>
-                                <td class="game-home-team">EnVyUs</td>
-                                <td class="game-result">3:1</td>
-                                <td class="game-away-team">Virtus.Pro</td>
-                                <td class="game-round">Quater-final</td>
-                            </tr>
-                            <tr class="tournament-game">
-                                    <td class="game-start-time">16:00</td>
-                                    <td class="game-status">Finished</td>
-                                    <td class="game-home-team">FaZe</td>
-                                    <td class="game-result">0:3</td>
-                                    <td class="game-away-team">G2 eSports</td>
-                                    <td class="game-round">Quater-final</td>
-                            </tr>
-                            <tr class="tournament-game">
-                                    <td class="game-start-time">19:00</td>
-                                    <td class="game-status">Playing</td>
-                                    <td class="game-home-team">Newbee</td>
-                                    <td class="game-result">1:1</td>
-                                    <td class="game-away-team">Team Liquid</td>
-                                    <td class="game-round">Quater-final</td>
-                            </tr>
-                            <tr class="tournament-game">
-                                    <td class="game-start-time">22:00</td>
-                                    <td class="game-status"></td>
-                                    <td class="game-home-team">G Force</td>
-                                    <td class="game-result">:</td>
-                                    <td class="game-away-team">KlikTech</td>
-                                    <td class="game-round">Quater-final</td>
-                            </tr>
-                        </tbody>
-                </table>
-
-                <table class="results-table League Of Legends">
-                        <thead>
-                            <tr class="tournament-header">
-                                <td class="tournament-logo league"><img src="css/images/lol.png" class="esports-logo"></td>
-                                <td class="tournament-name" colspan="4">NA LCS 2018 Texas</td>
-                                <td class="game-date">06-04-2018</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="tournament-game">
-                                <td class="game-start-time">12:30</td>
-                                <td class="game-status">Finished</td>
-                                <td class="game-home-team">OpTic</td>
-                                <td class="game-result">3:2</td>
-                                <td class="game-away-team">EDward</td>
-                                <td class="game-round">Semi-Final</td>
-                            </tr>
-                            <tr class="tournament-game">
-                                    <td class="game-start-time">15:30</td>
-                                    <td class="game-status">Finished</td>
-                                    <td class="game-home-team">Vici Gaming</td>
-                                    <td class="game-result">3:0</td>
-                                    <td class="game-away-team">Heroic</td>
-                                    <td class="game-round">Semi-Final</td>
-                            </tr>
-                        </tbody>
-                </table>
-
-                <table class="results-table CSGO">
-                        <thead>
-                            <tr class="tournament-header">
-                                <td class="tournament-logo"><img src="css/images/csgo.png" class="esports-logo"></td>
-                                <td class="tournament-name" colspan="4">EU LCS 2018 Moscow</td>
-                                <td class="game-date">06-04-2018</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="tournament-game">
-                                <td class="game-start-time">16:00</td>
-                                <td class="game-status">Finished</td>
-                                <td class="game-home-team">Team Liquid</td>
-                                <td class="game-result">2:1</td>
-                                <td class="game-away-team">Virtus.Pro</td>
-                                <td class="game-round">Quater-final</td>
-                            </tr>
-                            <tr class="tournament-game">
-                                    <td class="game-start-time">16:00</td>
-                                    <td class="game-status">Finished</td>
-                                    <td class="game-home-team">G Force</td>
-                                    <td class="game-result">0:2</td>
-                                    <td class="game-away-team">Newbee</td>
-                                    <td class="game-round">Quater-final</td>
-                            </tr>
-                            <tr class="tournament-game">
-                                    <td class="game-start-time">19:00</td>
-                                    <td class="game-status">Playing</td>
-                                    <td class="game-home-team">G2 eSports</td>
-                                    <td class="game-result">1:1</td>
-                                    <td class="game-away-team">EnVyUs</td>
-                                    <td class="game-round">Quater-final</td>
-                            </tr>
-                            <tr class="tournament-game">
-                                    <td class="game-start-time">19:00</td>
-                                    <td class="game-status"></td>
-                                    <td class="game-home-team">FaZe</td>
-                                    <td class="game-result">0:1</td>
-                                    <td class="game-away-team">KlikTech</td>
-                                    <td class="game-round">Quater-final</td>
-                            </tr>
-                        </tbody>
-                </table>
-
-                <table class="results-table dota2">
-                        <thead>
-                            <tr class="tournament-header">
-                                <td class="tournament-logo"><img src="css/images/dota2.png" class="esports-logo"></td>
-                                <td class="tournament-name" colspan="4">EU OLU 2018 London</td>
-                                <td class="game-date">06-04-2018</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="tournament-game">
-                                <td class="game-start-time">12:00</td>
-                                <td class="game-status">Finished</td>
-                                <td class="game-home-team">Evil Geniuses</td>
-                                <td class="game-result">2:3</td>
-                                <td class="game-away-team">Virtus.Pro</td>
-                                <td class="game-round">Round 1</td>
-                            </tr>
-                            <tr class="tournament-game">
-                                    <td class="game-start-time">12:00</td>
-                                    <td class="game-status">Finished</td>
-                                    <td class="game-home-team">G Force</td>
-                                    <td class="game-result">3:2</td>
-                                    <td class="game-away-team">LGD Gaming</td>
-                                    <td class="game-round">Round 1</td>
-                            </tr>
-                            <tr class="tournament-game">
-                                    <td class="game-start-time">15:00</td>
-                                    <td class="game-status">Finished</td>
-                                    <td class="game-home-team">G2 eSports</td>
-                                    <td class="game-result">3:0</td>
-                                    <td class="game-away-team">Newbee</td>
-                                    <td class="game-round">Round 1</td>
-                            </tr>
-                            <tr class="tournament-game">
-                                    <td class="game-start-time">15:00</td>
-                                    <td class="game-status">Finished</td>
-                                    <td class="game-home-team">FaZe</td>
-                                    <td class="game-result">3:1</td>
-                                    <td class="game-away-team">EnVyUs</td>
-                                    <td class="game-round">Round 1</td>
-                            </tr>
-
-                            <tr class="tournament-game">
-                                <td class="game-start-time">18:00</td>
-                                <td class="game-status">Playing</td>
-                                <td class="game-home-team">Team Liquid</td>
-                                <td class="game-result">0:1</td>
-                                <td class="game-away-team">Vici Gaming</td>
-                                <td class="game-round">Round 1</td>
-                            </tr>
-                            <tr class="tournament-game">
-                                    <td class="game-start-time">18:00</td>
-                                    <td class="game-status">Playing</td>
-                                    <td class="game-home-team">Na'Vi</td>
-                                    <td class="game-result">0:2</td>
-                                    <td class="game-away-team">Cloud9</td>
-                                    <td class="game-round">Round 1</td>
-                            </tr>
-                            <tr class="tournament-game">
-                                    <td class="game-start-time">21:00</td>
-                                    <td class="game-status"></td>
-                                    <td class="game-home-team">Digital Chaos</td>
-                                    <td class="game-result">:</td>
-                                    <td class="game-away-team">MVP</td>
-                                    <td class="game-round">Round 1</td>
-                            </tr>
-                            <tr class="tournament-game">
-                                    <td class="game-start-time">21:00</td>
-                                    <td class="game-status"></td>
-                                    <td class="game-home-team">Team DK</td>
-                                    <td class="game-result">:</td>
-                                    <td class="game-away-team">Fnatic</td>
-                                    <td class="game-round">Round 1</td>
-                            </tr>
-                        </tbody>
-                </table>
-
-                <table class="results-table hs">
-                        <thead>
-                            <tr class="tournament-header">
-                                <td class="tournament-logo league"><img src="css/images/hs.png" class="esports-logo"></td>
-                                <td class="tournament-name" colspan="4">Asia Tour 2018 Tokyo</td>
-                                <td class="game-date">06-04-2018</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="tournament-game">
-                                <td class="game-start-time">12:30</td>
-                                <td class="game-status">Finished</td>
-                                <td class="game-home-team">OpTic</td>
-                                <td class="game-result">3:2</td>
-                                <td class="game-away-team">EDward</td>
-                                <td class="game-round">Semi-Final</td>
-                            </tr>
-                            <tr class="tournament-game">
-                                    <td class="game-start-time">15:30</td>
-                                    <td class="game-status">Finished</td>
-                                    <td class="game-home-team">Vici Gaming</td>
-                                    <td class="game-result">0:3</td>
-                                    <td class="game-away-team">Heroic</td>
-                                    <td class="game-round">Semi-Final</td>
-                            </tr>
-                        </tbody>
-                </table>
-            </div>
+						
+						
+						// get the table out
+						
+						//team 1
+						$sql = mysqli_query($mysqli,"SELECT * FROM timovi WHERE id='$team1'");
+						if(mysqli_num_rows($sql)>0){
+							$qry = "SELECT * FROM timovi WHERE id='$team1'";
+							$result = mysqli_query($mysqli,$qry)or die(mysqli_error());
+								while($row = mysqli_fetch_array($result)):
+								?>
+								<tr><td class="tournament-game inform"><?php echo $row['tim'];?></td>
+								<?php
+								endwhile;
+						}
+						
+						//result
+						$sql = mysqli_query($mysqli,"SELECT * FROM mecevi WHERE FK_Duel='$keyMatch'");
+						if(mysqli_num_rows($sql)>0){
+							$qry = "SELECT * FROM mecevi WHERE FK_Duel='$keyMatch'";
+							$result = mysqli_query($mysqli,$qry)or die(mysqli_error());
+								while($row = mysqli_fetch_array($result)):
+								?>
+								<td class="tournament-game game-result"><?php echo $row['rezultat'];?></td>
+								<?php
+								endwhile;
+						}
+						
+						//team 2
+						$sql = mysqli_query($mysqli,"SELECT * FROM timovi WHERE id='$team2'");
+						if(mysqli_num_rows($sql)>0){
+							$qry = "SELECT * FROM timovi WHERE id='$team2'";
+							$result = mysqli_query($mysqli,$qry)or die(mysqli_error());
+								while($row = mysqli_fetch_array($result)):
+								?>
+								<td class="tournament-game inform"><?php echo $row['tim'];?></td></tr>
+								<?php
+								endwhile;
+						}
+						}else{
+							echo '<script language="javascript">';
+							echo 'alert("That team is not playing!")';
+							echo '</script>';
+						}
+					}else{
+						$sql = mysqli_query($mysqli,"SELECT * FROM igraci WHERE Game_tag='$pojam'");
+						if(mysqli_num_rows($sql)>0){
+							?>
+						<table class="results-table">
+							<thead><tr class="tournament-header" ><td colspan="3">Match information</td></tr></thead>
+							<tbody>
+								<tr>
+									<td class="tournament-game" style="font-weight:bold">Team A</td>
+									<td class="tournament-game game-result" style="font-weight:bold">Result</td>
+									<td class="tournament-game" style="font-weight:bold">Team B</td>
+								</tr>
+						<?php
+						$qry = "SELECT * FROM igraci WHERE Game_tag='$pojam'";
+						$result = mysqli_query($mysqli,$qry)or die(mysqli_error());
+							while($row = mysqli_fetch_array($result)):
+								$keyTeam=$row['FK_Team'];
+							endwhile;
+						
+						//search for duel
+						$sql = mysqli_query($mysqli,"SELECT * FROM duel WHERE FK_Team1='$keyTeam' or FK_Team2='$keyTeam'");
+						if(mysqli_num_rows($sql)>0){
+							$qry = "SELECT * FROM duel WHERE FK_Team1='$keyTeam' or FK_Team2='$keyTeam'";
+							$result = mysqli_query($mysqli,$qry)or die(mysqli_error());
+								while($row = mysqli_fetch_array($result)):
+									$team1=$row['FK_Team1'];
+									$team2=$row['FK_Team2'];
+									$keyMatch=$row['id'];
+								endwhile;
+						
+						
+						// get the table out
+						
+						//team 1
+						$sql = mysqli_query($mysqli,"SELECT * FROM timovi WHERE id='$team1'");
+						if(mysqli_num_rows($sql)>0){
+							$qry = "SELECT * FROM timovi WHERE id='$team1'";
+							$result = mysqli_query($mysqli,$qry)or die(mysqli_error());
+								while($row = mysqli_fetch_array($result)):
+								?>
+								<tr><td class="tournament-game inform"><?php echo $row['tim'];?></td>
+								<?php
+								endwhile;
+						}
+						
+						//result
+						$sql = mysqli_query($mysqli,"SELECT * FROM mecevi WHERE FK_Duel='$keyMatch'");
+						if(mysqli_num_rows($sql)>0){
+							$qry = "SELECT * FROM mecevi WHERE FK_Duel='$keyMatch'";
+							$result = mysqli_query($mysqli,$qry)or die(mysqli_error());
+								while($row = mysqli_fetch_array($result)):
+								?>
+								<td class="tournament-game game-result"><?php echo $row['rezultat'];?></td>
+								<?php
+								endwhile;
+						}
+						
+						//team 2
+						$sql = mysqli_query($mysqli,"SELECT * FROM timovi WHERE id='$team2'");
+						if(mysqli_num_rows($sql)>0){
+							$qry = "SELECT * FROM timovi WHERE id='$team2'";
+							$result = mysqli_query($mysqli,$qry)or die(mysqli_error());
+								while($row = mysqli_fetch_array($result)):
+								?>
+								<td class="tournament-game inform"><?php echo $row['tim'];?></td></tr>
+								<?php
+								endwhile;
+						}
+						}else{
+							echo '<script language="javascript">';
+							echo 'alert("Team of that player is not playing!")';
+							echo '</script>';
+						}
+											
+					}
+				}
+			}	
+			?>
+		</div>
+		
+		<div>
+			<a href="crud.php" class="srcBtn">Pregled postojećih igrača i dodavanje novih</a>
+		</div>
+		
 		<script src="js/script.js"></script>
 	</body>
 </html>

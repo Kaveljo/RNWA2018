@@ -1,5 +1,5 @@
 .inform{
-	width: 300px !important;
+	width: 300px ;
 }
 
 .backBtn{
@@ -57,6 +57,7 @@
 	width: 60%;
 	height: 25px;
 	border-radius:5px;
+	text-align: center;
 }
 .search-space{
 	text-align: center;

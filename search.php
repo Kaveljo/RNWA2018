@@ -115,6 +115,11 @@ session_start();
 								<?php
 							endwhile;
 						}
+						else{
+							echo '<script language="javascript">';
+							echo 'alert("Not existing data !")';
+							echo '</script>';
+						}
 					}
 				}
 			?>
