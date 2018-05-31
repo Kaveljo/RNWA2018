@@ -9,35 +9,41 @@ $result = mysqli_query($mysqli, "SELECT igraci.id, Ime,Prezime, Game_tag, tim FR
 
 <html>
 <head>	
-	<title>Dodavanje igraca</title>
+	
+	<title>Pregled igrača</title>
+	<meta charset="UTF-8">
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<link href="remake.css" rel="stylesheet" type="text/css" />
+	<meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	
 </head>
 
 <body>
-<a href="create.html">Dodaj novog igraca</a><br/><br/>
+<a class="srcBtn button" href="create.html">Dodaj novog igraca</a>
+<a class="srcBtn button" href="home.php">Home</a>
 
-	<table width='80%' border=0>
+	<table width='80%' border=0 class="results-table">
 
-	<tr bgcolor='#CCCCCC'>
-		<td>Ime</td>
-		<td>Prezime</td>
-		<td>Game tag</td>
-		<td>Team</td>
-		<td colspan="2">Actions</td>
+	<tr bgcolor='#CCCCCC' >
+		<td class="tournament-header">Ime</td>
+		<td class="tournament-header">Prezime</td>
+		<td class="tournament-header">Game tag</td>
+		<td class="tournament-header">Team</td>
+		<td colspan="2" class="tournament-header">Actions</td>
 	</tr>
 	<?php 
 	while($res = mysqli_fetch_array($result)) {
 		echo "<tr>";
-		echo "<td>".$res['Ime']."</td>";
-		echo "<td>".$res['Prezime']."</td>";
-		echo "<td>".$res['Game_tag']."</td>";	
-		echo "<td>".$res['tim']."</td>";
-		echo "<td><a href=\"update.php?id=$res[id]\">Update</a></td>";
-		echo "<td><a href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Želite li izbrisati ovog igrača?')\">Delete</a></td>";		
+		echo "<td class='tournament-game'>".$res['Ime']."</td>";
+		echo "<td class='tournament-game'>".$res['Prezime']."</td>";
+		echo "<td class='tournament-game'>".$res['Game_tag']."</td>";	
+		echo "<td class='tournament-game'>".$res['tim']."</td>";
+		echo "<td class='tournament-game'><a href=\"update.php?id=$res[id]\">Update</a></td>";
+		echo "<td class='tournament-game'><a href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Želite li izbrisati ovog igrača?')\">Delete</a></td>";		
 				
 	}
 	?>
 	</table>
 	
-<a href="index.php">Home</a>
 </body>
 </html>

@@ -17,7 +17,7 @@ session_start();
 			<form method="post" action="" > 
 				<input type="text" class="searchfield" name="srcField" placeholder="Type in team name or gamer's tag..."></input>
 				<input type="submit" class="srcBtn" name="trazi" value="Search"></input>
-				<a href="index.php" class="backBtn">Go Back</a>
+				<a href="home.php" class="backBtn">Go Back</a>
 			</form>
 		</div>
 		<div class="src-result">

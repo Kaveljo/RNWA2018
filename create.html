@@ -1,33 +1,39 @@
 <html>
 <head>
-	<title>Dodavanje igraca</title>
+	<title>Dodaj igrača</title>
+	<meta charset="UTF-8">
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<link href="remake.css" rel="stylesheet" type="text/css" />
+	<meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 </head>
 
 <body>
-	<a href="index.php">Home</a>
+	<a class="srcBtn button" href="home.php">Home</a>
+	<br/>
+	<a class="srcBtn button" href="crud.php">Prethodna</a>
 	<br/><br/>
 
 	<form action="create.php" method="post" name="form1">
-		<table width="25%" border="0">
+		<table width="25%" border="0" class="results-table">
 			<tr> 
-				<td>Ime</td>
-				<td><input type="text" name="ime"></td>
+				<td class="tournament-header">Ime</td>
+				<td style="background-color:lightgrey;" ><input type="text" name="ime"></td>
 			</tr>
 			<tr> 
-				<td>Prezime</td>
-				<td><input type="text" name="prezime"></td>
+				<td class="tournament-header">Prezime</td>
+				<td style="background-color:lightgrey;"><input type="text" name="prezime"></td>
 			</tr>
 			<tr> 
-				<td>Game_tag</td>
-				<td><input type="text" name="gametag"></td>
+				<td class="tournament-header">Game_tag</td>
+				<td style="background-color:lightgrey;"><input type="text" name="gametag"></td>
 			</tr>
 			<tr> 
-				<td>Team</td>
-				<td><input type="text" name="team"></td>
+				<td class="tournament-header">Team</td>
+				<td style="background-color:lightgrey;"><input type="text" name="team"></td>
 			</tr>
 			<tr> 
-				<td></td>
-				<td><input type="submit" name="Submit" value="Add"></td>
+				<td class="tournament-header"></td>
+				<td style="background-color:lightgrey;"><input type="submit" name="Submit" value="Add"></td>
 			</tr>
 		</table>
 	</form>

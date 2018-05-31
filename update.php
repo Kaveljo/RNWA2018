@@ -50,32 +50,36 @@ while($res = mysqli_fetch_array($result))
 ?>
 <html>
 <head>	
-	<title>Edit Data</title>
+	<title>Uređivanje igrača</title>
+	<meta charset="UTF-8">
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<link href="remake.css" rel="stylesheet" type="text/css" />
+	<meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 </head>
 
 <body>
-	<a href="index.php">Početna</a>
+	<a class="srcBtn button" href="home.php">Početna</a>
+	<br/>
+	<a class="srcBtn button" href="crud.php">Prethodna</a>
 	<br/><br/>
-	<a href="crud.php">Prethodna</a>
-	<br/><br/><br/>
 	
 	<form name="form1" method="post" action="update.php">
 		<table border="0">
 			<tr> 
-				<td>Ime</td>
-				<td><input type="text" name="name" value="<?php echo $ime;?>"></td>
+				<td class="tournament-header">Ime</td>
+				<td class="tournament-game"><input style="background-color:whitesmoke" type="text" name="name" value="<?php echo $ime;?>"></td>
 			</tr>
 			<tr> 
-				<td>Prezime</td>
-				<td><input type="text" name="age" value="<?php echo $prezime;?>"></td>
+				<td class="tournament-header">Prezime</td>
+				<td class="tournament-game"><input style="background-color:whitesmoke" type="text" name="age" value="<?php echo $prezime;?>"></td>
 			</tr>
 			<tr> 
-				<td>Gametag</td>
-				<td><input type="text" name="email" value="<?php echo $gametag;?>"></td>
+				<td class="tournament-header">Gametag</td>
+				<td class="tournament-game"><input style="background-color:whitesmoke" type="text" name="email" value="<?php echo $gametag;?>"></td>
 			</tr>
 			<tr>
-				<td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-				<td><input type="submit" name="update" value="Update"></td>
+				<td class="tournament-header"><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
+				<td class="tournament-game"><input style="position:relative; background-color:whitesmoke" type="submit" name="update" value="Update" class="centered"></td>
 			</tr>
 		</table>
 	</form>

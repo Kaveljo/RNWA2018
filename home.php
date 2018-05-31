@@ -180,7 +180,7 @@ require 'db.php';
 		</div>
 		
 		<div>
-			<a href="crud.php" class="srcBtn">Pregled postojećih igrača i dodavanje novih</a>
+			<a href="crud.php" class="srcBtn backBtn"">Igrači</a>
 		</div>
 		
 		<script src="js/script.js"></script>

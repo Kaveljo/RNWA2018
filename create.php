@@ -1,6 +1,10 @@
 <html>
 <head>
-	<title>Dodavanje igraca</title>
+	<title>Dodaj igrača</title>
+	<meta charset="UTF-8">
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<link href="remake.css" rel="stylesheet" type="text/css" />
+	<meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 </head>
 
 <body>
@@ -44,8 +48,8 @@ if(isset($_POST['Submit'])) {
 			$checkrows=mysqli_num_rows($check);
 
 			if($checkrows>0) {
-				echo "Igrač sa tim game tagom vec postoji!";
-				echo "<br/><a href='create.html'>Vrati se natrag</a>";
+				echo "<font color='red'>Igrač sa tim game tagom vec postoji!<font><br/>";
+				echo "<br/><a class='srcBtn button' href='create.html'>Vrati se natrag</a>";
 			}
 			else {  
 
@@ -56,9 +60,8 @@ if(isset($_POST['Submit'])) {
 					mysqli_commit($mysqli);
 					mysqli_close($mysqli);
 		
-					echo "Igrac: $ime $prezime, $gametag, $team<br/>";
-					echo "<font color='green'>Igrač uspješno dodan.";
-					echo "<br/><a href='crud.php'>Pogledaj rezultat</a>";
+					echo "<font color='green'>Igrač: $ime $prezime, $gametag, $team - uspješno dodan.<br/>";
+					echo "<br/><a class='srcBtn button' href='crud.php'>Pogledaj rezultat</a>";
 			}
 	}
 }
