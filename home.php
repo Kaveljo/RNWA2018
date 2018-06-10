@@ -180,7 +180,11 @@ require 'db.php';
 		</div>
 		
 		<div>
-			<a href="crud.php" class="srcBtn backBtn"">Igrači</a>
+			<a href="crud.php" class="srcBtn backBtn">Igrači</a>
+		</div>
+		
+		<div>
+			<a href="webService/player_list.html" class="srcBtn backBtn">Timovi</a>
 		</div>
 		
 		<script src="js/script.js"></script>
