@@ -20,7 +20,7 @@ $result = mysqli_query($mysqli, "SELECT igraci.id, Ime,Prezime, Game_tag, tim FR
 
 <body>
 <a class="srcBtn button" href="create.html">Dodaj novog igraca</a>
-<a class="srcBtn button" href="home.php">Home</a>
+<a class="srcBtn button" href="home.php">Početna</a>
 
 	<table width='80%' border=0 class="results-table">
 

@@ -184,7 +184,11 @@ require 'db.php';
 		</div>
 		
 		<div>
-			<a href="webService/player_list.html" class="srcBtn backBtn">Timovi</a>
+			<a href="webService/client.php" class="srcBtn backBtn">Timovi</a>
+		</div>
+		
+		<div>
+			<a href="webService/server.php?wsdl" class="srcBtn backBtn">WSDL</a>
 		</div>
 		
 		<script src="js/script.js"></script>
