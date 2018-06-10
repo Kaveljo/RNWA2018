@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2018 at 02:04 PM
+-- Generation Time: Jun 10, 2018 at 03:59 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -89,16 +89,15 @@ INSERT INTO `igraci` (`id`, `FK_Team`, `FK_Mjesto`, `Ime`, `Prezime`, `Game_tag`
 (11, 4, 14, 'Robin', 'Ronnquist', 'flusha'),
 (12, 5, 10, 'Nicolai', 'Reedtz', 'dev1ce'),
 (13, 5, 10, 'Peter', 'Rothmann', 'dupreeh'),
-(14, 5, 10, 'Andreas', 'Højsleth', 'Xyp9x'),
+(14, 5, 10, 'Andreas', 'Hoejsleth', 'Xyp9x'),
 (15, 7, 14, 'Simon', 'Eliasson', 'twist'),
 (16, 7, 14, 'Joakim', 'Gidetun', 'disco doplan'),
 (17, 7, 14, 'Fredrik', 'Buo', 'freddieb'),
 (18, 8, 1, 'Tyler', 'Latham', 'Skadoodle'),
 (19, 8, 1, 'Timothy', 'Ta', 'automatic'),
 (20, 8, 1, 'Will', 'Wierzba', 'RUSH'),
-(28, 21, NULL, 'Josip', 'Nikolic', 'MoonPie'),
 (30, 21, NULL, 'Goran', 'Kavelj', 'Kaveljo'),
-(31, 23, NULL, 'ime', 'prezime', 'tag');
+(34, 21, 13, 'Josip', 'Nikolic', 'MoonPie');
 
 -- --------------------------------------------------------
 
@@ -178,9 +177,8 @@ INSERT INTO `timovi` (`id`, `FK_Esport`, `FK_Mjesto`, `tim`) VALUES
 (5, 3, 10, 'Astralis (CSGO)'),
 (7, 3, 14, 'GODSENT (CSGO)'),
 (8, 3, 1, 'Cloud9 (CSGO)'),
-(21, NULL, NULL, 'OrtGang'),
-(22, NULL, NULL, 'user'),
-(23, NULL, NULL, 'team');
+(21, NULL, NULL, 'OrTeam'),
+(27, NULL, NULL, 'team1245');
 
 -- --------------------------------------------------------
 
@@ -282,7 +280,7 @@ ALTER TABLE `esport`
 -- AUTO_INCREMENT for table `igraci`
 --
 ALTER TABLE `igraci`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `lista`
@@ -306,7 +304,7 @@ ALTER TABLE `mjesto`
 -- AUTO_INCREMENT for table `timovi`
 --
 ALTER TABLE `timovi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `turnir`
