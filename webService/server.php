@@ -26,7 +26,7 @@ $server->register("getData",
 array('symbol' => 'xsd:string'),
 array('return' => 'xsd:string'),
 'urn:esportTeams',
-'urn:esportTeams#getSžData');
+'urn:esportTeams#getData');
 
 $HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA)
 ? $HTTP_RAW_POST_DATA : '';
